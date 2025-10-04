@@ -8,42 +8,42 @@
   <link rel="stylesheet" href="https://fastlist-css.pages.dev/css2.css">
   <link rel="stylesheet" href="https://fastlist-css.pages.dev/css.css">
   <style>
-    /* css */
+    /* 液态玻璃主题CSS变量 */
     :root {
       --primary: #0067C0;
       --on-primary: #FFFFFF;
-      --primary-container: #D3E5FF;
+      --primary-container: rgba(211, 229, 255, 0.7);
       --on-primary-container: #001D36;
       
       --secondary: #535F70;
       --on-secondary: #FFFFFF;
-      --secondary-container: #D7E3F7;
+      --secondary-container: rgba(215, 227, 247, 0.7);
       --on-secondary-container: #101C2B;
       
-      --surface: #F9F9FA;
+      --surface: rgba(255, 255, 255, 0.7);
       --on-surface: #1A1C1E;
-      --surface-variant: #DFE2EB;
+      --surface-variant: rgba(255, 255, 255, 0.5);
       --on-surface-variant: #43474E;
       
-      --background: #F9F9FA;
+      --background: linear-gradient(135deg, #ffffff 0%, #e6f7ff 100%);
       --on-background: #1A1C1E;
       
       --outline: #74777F;
-      --outline-variant: #C4C6D0;
+      --outline-variant: rgba(196, 198, 208, 0.5);
       
       --error: #BA1A1A;
       --on-error: #FFFFFF;
-      --error-container: #FFDAD6;
+      --error-container: rgba(255, 218, 214, 0.7);
       --on-error-container: #410002;
       
       --success: #0C7D60;
       --on-success: #FFFFFF;
-      --success-container: #A6F2DB;
+      --success-container: rgba(166, 242, 219, 0.7);
       --on-success-container: #002116;
       
       --warning: #E6B400;
       --on-warning: #FFFFFF;
-      --warning-container: #FFE9A3;
+      --warning-container: rgba(255, 233, 163, 0.7);
       --on-warning-container: #4C3D00;
       
       --elevation-1: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -68,49 +68,59 @@
       --icon-size-sm: 18px;
       --icon-size-md: 24px;
       --icon-size-lg: 32px;
+      
+      /* 液态玻璃特效 */
+      --glass-blur: blur(10px);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.3);
+      --glass-shadow: 0 8px 32px rgba(0, 103, 192, 0.1);
     }
 
     /* 暗色主题 */
     [data-theme="dark"] {
       --primary: #A8C8FF;
       --on-primary: #003059;
-      --primary-container: #00497E;
+      --primary-container: rgba(0, 73, 126, 0.7);
       --on-primary-container: #D3E5FF;
       
       --secondary: #BBC7DB;
       --on-secondary: #253140;
-      --secondary-container: #3B4858;
+      --secondary-container: rgba(59, 72, 88, 0.7);
       --on-secondary-container: #D7E3F7;
       
-      --surface: #121316;
+      --surface: rgba(30, 30, 35, 0.7);
       --on-surface: #E2E2E5;
-      --surface-variant: #43474E;
+      --surface-variant: rgba(67, 71, 78, 0.5);
       --on-surface-variant: #C4C6D0;
       
-      --background: #121316;
+      --background: linear-gradient(135deg, #121316 0%, #1a3a4a 100%);
       --on-background: #E2E2E5;
       
       --outline: #8E9199;
-      --outline-variant: #43474E;
+      --outline-variant: rgba(67, 71, 78, 0.5);
       
       --error: #FFB4AB;
       --on-error: #690005;
-      --error-container: #93000A;
+      --error-container: rgba(147, 0, 10, 0.7);
       --on-error-container: #FFDAD6;
       
       --success: #88D8BF;
       --on-success: #00382A;
-      --success-container: #00503F;
+      --success-container: rgba(0, 80, 63, 0.7);
       --on-success-container: #A6F2DB;
       
       --warning: #FFDC48;
       --on-warning: #3D3000;
-      --warning-container: #5F4E00;
+      --warning-container: rgba(95, 78, 0, 0.7);
       --on-warning-container: #FFE9A3;
       
       --elevation-1: 0 1px 2px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
       --elevation-2: 0 2px 6px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.3);
       --elevation-3: 0 4px 12px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.3);
+      
+      /* 暗色主题的玻璃特效 */
+      --glass-blur: blur(10px);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     }
 
     * {
@@ -122,7 +132,7 @@
     }
     
     body {
-      background-color: var(--background);
+      background: var(--background);
       color: var(--on-background);
       min-height: 100vh;
       display: flex;
@@ -169,6 +179,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      backdrop-filter: var(--glass-blur);
+      box-shadow: var(--glass-shadow);
     }
 
     .logo-icon i {
@@ -180,9 +192,10 @@
       color: var(--primary);
       font-size: 2.5rem;
       margin-bottom: var(--spacing-sm);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    /* 新增：左上角按钮容器 */
+    /* 左上角按钮容器 */
     .header-buttons {
       position: fixed;
       top: var(--spacing-md);
@@ -202,15 +215,16 @@
       font-weight: 600;
       font-size: 0.95rem;
       transition: var(--transition);
-      background-color: var(--primary);
-      color: var(--on-primary);
+      background-color: var(--surface);
+      color: var(--on-surface);
       box-shadow: var(--elevation-1);
+      backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
     }
     
     .header-button:hover {
-      opacity: 0.9;
-      box-shadow: var(--elevation-2);
       transform: translateY(-2px);
+      box-shadow: var(--elevation-2);
     }
     
     .header-button i {
@@ -237,6 +251,8 @@
       align-items: center;
       padding: 2px;
       transition: background-color var(--transition);
+      backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
     }
     
     .theme-toggle::before {
@@ -291,10 +307,13 @@
       padding: var(--spacing-xl);
       margin-bottom: var(--spacing-xl);
       transition: box-shadow var(--transition), transform var(--transition);
+      backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
     }
     
     .card:hover {
       box-shadow: var(--elevation-2);
+      transform: translateY(-2px);
     }
 
     .announcement-section {
@@ -303,6 +322,8 @@
       padding: var(--spacing-lg);
       border-radius: var(--radius-lg);
       margin-bottom: var(--spacing-md);
+      backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
     }
 
     .announcement-header {
@@ -333,6 +354,7 @@
       display: flex;
       align-items: center;
       gap: var(--spacing-xs);
+      backdrop-filter: var(--glass-blur);
     }
 
     .refresh-button:hover {
@@ -361,8 +383,9 @@
       padding: var(--spacing-lg);
       margin: var(--spacing-lg) 0;
       border-radius: var(--radius-lg);
-      border: 1px solid var(--outline-variant);
+      border: var(--glass-border);
       transition: var(--transition);
+      backdrop-filter: var(--glass-blur);
     }
 
     .release-header h3 {
@@ -387,8 +410,9 @@
       margin: var(--spacing-sm) 0;
       background: var(--surface);
       border-radius: var(--radius-md);
-      border: 1px solid var(--outline-variant);
+      border: var(--glass-border);
       transition: var(--transition);
+      backdrop-filter: var(--glass-blur);
     }
 
     .download-item:hover {
@@ -429,12 +453,13 @@
       display: flex;
       align-items: center;
       gap: var(--spacing-xs);
+      backdrop-filter: var(--glass-blur);
     }
 
     .download-link:not(.accelerated) {
       background: var(--surface-variant);
       color: var(--on-surface-variant);
-      border: 1px solid var(--outline-variant);
+      border: var(--glass-border);
     }
 
     .download-link:not(.accelerated):hover {
@@ -465,6 +490,7 @@
       display: flex;
       align-items: center;
       gap: var(--spacing-xs);
+      backdrop-filter: var(--glass-blur);
     }
 
     .toggle-assets:hover {
@@ -476,15 +502,16 @@
       padding: var(--spacing-lg);
       border-radius: var(--radius-lg);
       margin: var(--spacing-lg) 0;
-      border: 1px solid var(--outline-variant);
+      border: var(--glass-border);
       transition: var(--transition);
+      backdrop-filter: var(--glass-blur);
     }
 
     .form-input, .form-textarea {
       width: 100%;
       padding: var(--spacing-md);
       margin: var(--spacing-sm) 0;
-      border: 1px solid var(--outline-variant);
+      border: var(--glass-border);
       border-radius: var(--radius-md);
       box-sizing: border-box;
       font-family: inherit;
@@ -492,11 +519,13 @@
       font-size: 1rem;
       background: var(--surface);
       color: var(--on-surface);
+      backdrop-filter: var(--glass-blur);
     }
 
     .form-input:focus, .form-textarea:focus {
       border-color: var(--primary);
       outline: none;
+      box-shadow: 0 0 0 2px rgba(0, 103, 192, 0.2);
     }
 
     .submit-button {
@@ -515,6 +544,7 @@
       justify-content: center;
       gap: var(--spacing-xs);
       margin-top: var(--spacing-sm);
+      backdrop-filter: var(--glass-blur);
     }
 
     .submit-button:hover {
@@ -525,9 +555,10 @@
       margin: var(--spacing-lg) 0;
       padding: var(--spacing-lg);
       background: var(--surface);
-      border: 1px solid var(--outline-variant);
+      border: var(--glass-border);
       border-radius: var(--radius-lg);
       transition: var(--transition);
+      backdrop-filter: var(--glass-blur);
     }
 
     .user-info {
@@ -544,6 +575,7 @@
       object-fit: cover;
       border: 2px solid var(--primary);
       padding: 2px;
+      backdrop-filter: var(--glass-blur);
     }
 
     .comment {
@@ -554,7 +586,8 @@
       display: flex;
       gap: var(--spacing-lg);
       transition: var(--transition);
-      border: 1px solid var(--outline-variant);
+      border: var(--glass-border);
+      backdrop-filter: var(--glass-blur);
     }
 
     .comment:hover {
@@ -590,10 +623,11 @@
       padding: var(--spacing-lg);
       background: var(--surface-variant);
       border-radius: var(--radius-lg);
-      border: 1px solid var(--outline-variant);
+      border: var(--glass-border);
       font-size: 0.95rem;
       color: var(--on-surface-variant);
       text-align: center;
+      backdrop-filter: var(--glass-blur);
     }
 
     .disclaimer-link {
@@ -633,7 +667,8 @@
       border-radius: var(--radius-lg);
       margin: var(--spacing-lg) 0;
       grid-column: 1 / -1;
-      border: 1px solid var(--outline-variant);
+      border: var(--glass-border);
+      backdrop-filter: var(--glass-blur);
     }
 
     .stat-item {
@@ -715,17 +750,19 @@
     .search-input {
       width: 100%;
       padding: var(--spacing-md) var(--spacing-xl) var(--spacing-md) var(--spacing-xl);
-      border: 1px solid var(--outline-variant);
+      border: var(--glass-border);
       border-radius: var(--radius-md);
       background: var(--surface);
       color: var(--on-surface);
       font-size: 1rem;
       transition: var(--transition);
+      backdrop-filter: var(--glass-blur);
     }
     
     .search-input:focus {
       border-color: var(--primary);
       outline: none;
+      box-shadow: 0 0 0 2px rgba(0, 103, 192, 0.2);
     }
     
     .search-icon {
@@ -746,6 +783,7 @@
       color: var(--on-surface-variant);
       cursor: pointer;
       display: none;
+      backdrop-filter: var(--glass-blur);
     }
     
     .clear-search:hover {
@@ -768,6 +806,7 @@
       gap: var(--spacing-xs);
       text-decoration: none;
       white-space: nowrap;
+      backdrop-filter: var(--glass-blur);
     }
     
     .add-file-btn:hover {
@@ -785,6 +824,27 @@
       margin-bottom: var(--spacing-md);
       color: var(--on-surface-variant);
       font-size: 0.95rem;
+    }
+
+    /* 评论按钮样式 */
+    .comment-button {
+      background: var(--primary);
+      color: var(--on-primary);
+      padding: var(--spacing-sm) var(--spacing-md);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      backdrop-filter: var(--glass-blur);
+    }
+    
+    .comment-button:hover {
+      opacity: 0.9;
     }
     
     @media (min-width: 768px) {
@@ -859,7 +919,7 @@
   </style>
 </head>
 <body>
-  <!-- 新增：左上角按钮 -->
+  <!-- 左上角按钮 -->
   <div class="header-buttons">
     <a href="https://qm.qq.com/q/2HHKnFbXLW" target="_blank" class="header-button">
       <i class="fab fa-qq"></i> 加入QQ群
@@ -1114,7 +1174,7 @@
               </li>
             `).join('')}
           </ul>
-          <button class="submit-button toggle-assets">
+          <button class="toggle-assets">
             <i class="fas fa-layer-group"></i> 显示资源
           </button>
         </div>
@@ -1223,8 +1283,8 @@
               </div>
               <h3><i class="fas fa-comment-dots"></i> ${issue.title}</h3>
               <p>${issue.body || '无内容描述'}</p>
-              <button class="submit-button" onclick="loadComments(this, ${issue.number})"
-                style="margin-top:15px;padding:10px 20px;">
+              <button class="comment-button" onclick="loadComments(this, ${issue.number})"
+                style="margin-top:15px;">
                 <i class="fas fa-comments"></i> 显示评论 (${issue.comments})
               </button>
             </div>
@@ -1352,6 +1412,7 @@
       notification.style.display = 'flex';
       notification.style.alignItems = 'center';
       notification.style.gap = '10px';
+      backdrop-filter: var(--glass-blur);
       
       const closeBtn = notification.querySelector('.close-button');
       closeBtn.style.background = 'none';
@@ -1386,6 +1447,7 @@
       notification.style.display = 'flex';
       notification.style.alignItems = 'center';
       notification.style.gap = '10px';
+      backdrop-filter: var(--glass-blur);
       
       const closeBtn = notification.querySelector('.close-button');
       closeBtn.style.background = 'none';
